@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kotori Coffee ｜ コトリ珈琲 — 小鳥のさえずる朝に</title>
+<meta name="description" content="街の小さな自家焙煎カフェ、コトリ珈琲。小鳥がさえずる朝、ゆっくり流れる時間を一杯の珈琲と共に。" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Zen+Old+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #f3e9d9;
+    --cream-deep: #ece0cb;
+    --paper: #f8f1e4;
+    --espresso: #2a1c14;
+    --espresso-soft: #4a3529;
+    --ochre: #c1811f;
+    --ochre-deep: #a5691a;
+    --sage: #7f8b63;
+    --terra: #b0562f;
+    --line: rgba(42, 28, 20, 0.16);
+    --serif: "Fraunces", "Zen Old Mincho", serif;
+    --mincho: "Zen Old Mincho", serif;
+    --sans: "Zen Kaku Gothic New", sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--espresso);
+    background: var(--cream);
+    line-height: 1.85;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* film grain overlay */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.045;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  ::selection { background: var(--ochre); color: var(--paper); }
+
+  a { color: inherit; text-decoration: none; }
+  img, svg { display: block; }
+  .wrap { width: min(1180px, 90vw); margin-inline: auto; }
+
+  /* ---------- NAV ---------- */
+  header.nav {
+    position: sticky; top: 0; z-index: 100;
+    background: color-mix(in srgb, var(--cream) 82%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.9rem 0;
+  }
+  .brand { display: flex; align-items: center; gap: 0.6rem; font-family: var(--serif); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.02em; }
+  .brand svg { width: 30px; height: 30px; }
+  .nav-links { display: flex; gap: 2.1rem; font-size: 0.86rem; letter-spacing: 0.14em; text-transform: uppercase; }
+  .nav-links a { position: relative; padding: 0.2rem 0; color: var(--espresso-soft); transition: color .3s; }
+  .nav-links a::after { content:""; position:absolute; left:0; bottom:-2px; height:1px; width:0; background: var(--ochre); transition: width .35s ease; }
+  .nav-links a:hover { color: var(--espresso); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.55rem 1.2rem; border: 1px solid var(--espresso);
+    border-radius: 100px; transition: all .3s;
+  }
+  .nav-cta:hover { background: var(--espresso); color: var(--paper); }
+  .burger { display:none; background:none; border:none; cursor:pointer; padding:6px; }
+  .burger span { display:block; width:24px; height:2px; background: var(--espresso); margin:5px 0; transition: .3s; }
+
+  /* ---------- HERO ---------- */
+  .hero { position: relative; padding: clamp(3rem, 9vh, 7rem) 0 clamp(4rem, 10vh, 8rem); overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 2rem; align-items: center; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    font-size: 0.78rem; letter-spacing: 0.34em; text-transform: uppercase;
+    color: var(--ochre-deep); margin-bottom: 1.6rem;
+  }
+  .eyebrow::before { content:""; width: 42px; height:1px; background: var(--ochre-deep); }
+  .hero h1 {
+    font-family: var(--serif); font-weight: 500;
+    font-size: clamp(2.9rem, 7.2vw, 5.8rem);
+    line-height: 1.02; letter-spacing: -0.015em;
+  }
+  .hero h1 em { font-style: italic; color: var(--ochre-deep); }
+  .hero .jp-title { font-family: var(--mincho); font-size: clamp(1rem, 2.4vw, 1.45rem); letter-spacing: 0.3em; margin-top: 1.2rem; color: var(--espresso-soft); }
+  .hero p.lead { max-width: 40ch; margin-top: 1.8rem; color: var(--espresso-soft); font-size: 1.02rem; }
+  .hero-actions { display:flex; gap: 1rem; margin-top: 2.4rem; flex-wrap: wrap; }
+  .btn {
+    display:inline-flex; align-items:center; gap:0.6rem;
+    padding: 0.9rem 1.7rem; border-radius: 100px;
+    font-size: 0.9rem; letter-spacing: 0.06em; font-weight: 500;
+    transition: all .35s cubic-bezier(.2,.7,.3,1);
+  }
+  .btn-primary { background: var(--espresso); color: var(--paper); }
+  .btn-primary:hover { background: var(--ochre-deep); transform: translateY(-3px); box-shadow: 0 12px 26px rgba(42,28,20,.25); }
+  .btn-ghost { border: 1px solid var(--espresso); }
+  .btn-ghost:hover { background: var(--espresso); color: var(--paper); }
+  .btn svg { width: 16px; height: 16px; }
+
+  /* hero art */
+  .hero-art { position: relative; aspect-ratio: 1/1.06; }
+  .hero-disc {
+    position:absolute; inset:0; border-radius: 50%;
+    background:
+      radial-gradient(circle at 32% 30%, #d8a04a, transparent 55%),
+      radial-gradient(circle at 70% 74%, var(--terra), transparent 60%),
+      linear-gradient(150deg, var(--sage), var(--ochre-deep));
+    box-shadow: inset 0 0 60px rgba(42,28,20,.28);
+  }
+  .hero-art .steam { position:absolute; z-index:3; }
+  .hero-badge {
+    position:absolute; right:-4%; bottom:8%; z-index:4;
+    width: 118px; height:118px;
+    display:grid; place-items:center; text-align:center;
+    background: var(--paper); border-radius:50%;
+    font-family: var(--mincho); font-size:0.72rem; line-height:1.5; letter-spacing:0.08em;
+    color: var(--espresso); box-shadow: 0 10px 30px rgba(42,28,20,.22);
+    animation: spin 26s linear infinite;
+  }
+  .hero-badge b { display:block; font-family:var(--serif); font-size:1.5rem; color: var(--ochre-deep); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .hero-bird { position:absolute; z-index:5; top:-6%; left:-7%; width: 96px; animation: bob 4.5s ease-in-out infinite; }
+  @keyframes bob { 0%,100%{ transform: translateY(0) rotate(-4deg);} 50%{ transform: translateY(-14px) rotate(3deg);} }
+
+  .marquee { border-block: 1px solid var(--line); background: var(--cream-deep); overflow: hidden; white-space: nowrap; }
+  .marquee-track { display: inline-block; padding: 0.7rem 0; animation: slide 28s linear infinite; font-family: var(--mincho); letter-spacing: 0.25em; color: var(--espresso-soft); }
+  .marquee-track span { margin: 0 1.4rem; }
+  .marquee-track span::after { content:"✳"; margin-left: 2.8rem; color: var(--ochre); }
+  @keyframes slide { to { transform: translateX(-50%); } }
+
+  /* ---------- SECTION SHELL ---------- */
+  section { padding: clamp(4.5rem, 12vh, 8rem) 0; }
+  .sec-head { display:flex; align-items:baseline; gap: 1rem; margin-bottom: 3rem; }
+  .sec-num { font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--ochre-deep); }
+  .sec-title { font-family: var(--serif); font-weight: 500; font-size: clamp(2rem, 5vw, 3.3rem); line-height: 1.05; }
+  .sec-title small { display:block; font-family: var(--mincho); font-size: 0.9rem; letter-spacing: 0.34em; color: var(--espresso-soft); margin-top: 0.5rem; font-weight: 500; }
+
+  /* ---------- CONCEPT ---------- */
+  #concept { background: var(--paper); position: relative; }
+  .concept-grid { display:grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 6vw, 5rem); align-items:center; }
+  .concept-visual { position: relative; aspect-ratio: 4/5; border-radius: 4px; overflow:hidden;
+    background: linear-gradient(160deg, #e6d4b4, #c69a5a 60%, var(--sage));
+    box-shadow: 0 20px 50px rgba(42,28,20,.18); }
+  .concept-visual .frame { position:absolute; inset:14px; border:1px solid rgba(248,241,228,.5); border-radius:2px; }
+  .concept-copy h3 { font-family: var(--serif); font-weight: 500; font-size: clamp(1.6rem, 3.6vw, 2.4rem); line-height:1.3; margin-bottom: 1.5rem; }
+  .concept-copy h3 em { font-style: italic; color: var(--ochre-deep); }
+  .concept-copy p { color: var(--espresso-soft); margin-bottom: 1.1rem; }
+  .sign { font-family: var(--serif); font-style: italic; font-size: 1.5rem; margin-top: 1.8rem; color: var(--espresso); }
+
+  /* ---------- MENU ---------- */
+  .menu-lead { max-width: 46ch; color: var(--espresso-soft); margin: -1.4rem 0 2.6rem; }
+  .menu-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: 1.4rem; }
+  .m-card {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 6px;
+    padding: 1.7rem 1.6rem 1.8rem; position: relative; overflow:hidden;
+    transition: transform .4s cubic-bezier(.2,.7,.3,1), box-shadow .4s;
+  }
+  .m-card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(42,28,20,.14); }
+  .m-card.feature { grid-column: span 1; background: var(--espresso); color: var(--cream); border-color: transparent; }
+  .m-card.feature .m-price { color: var(--ochre); }
+  .m-tag { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ochre-deep); }
+  .m-card.feature .m-tag { color: #e6b45f; }
+  .m-icon { width: 46px; height: 46px; margin: 0.7rem 0 1rem; color: var(--ochre-deep); }
+  .m-card.feature .m-icon { color: #e6b45f; }
+  .m-name { font-family: var(--serif); font-weight: 500; font-size: 1.42rem; line-height: 1.2; }
+  .m-name .jp { display:block; font-family: var(--mincho); font-size: 0.82rem; letter-spacing: 0.16em; color: var(--espresso-soft); margin-top: 0.25rem; }
+  .m-card.feature .m-name .jp { color: rgba(243,233,217,.7); }
+  .m-desc { font-size: 0.9rem; color: var(--espresso-soft); margin: 0.8rem 0 1.2rem; }
+  .m-card.feature .m-desc { color: rgba(243,233,217,.78); }
+  .m-price { font-family: var(--serif); font-size: 1.15rem; color: var(--espresso); }
+  .m-price small { font-size: 0.75rem; }
+
+  /* ---------- GALLERY ---------- */
+  #gallery { background: var(--paper); }
+  .gal-grid { display:grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 160px; gap: 0.9rem; }
+  .gal { border-radius: 4px; overflow:hidden; position:relative; box-shadow: inset 0 0 40px rgba(42,28,20,.15); transition: transform .5s; }
+  .gal:hover { transform: scale(0.98); }
+  .gal span { position:absolute; left:0.8rem; bottom:0.6rem; font-family:var(--mincho); font-size:0.72rem; letter-spacing:0.14em; color: var(--paper); text-shadow: 0 1px 4px rgba(0,0,0,.4); }
+  .g1 { grid-column: span 2; grid-row: span 2; background: linear-gradient(150deg,#c88b3a,#7a3f22); }
+  .g2 { background: linear-gradient(150deg,#8a9468,#5f6b45); }
+  .g3 { background: linear-gradient(150deg,#e0c48c,#c08f45); }
+  .g4 { grid-column: span 2; background: linear-gradient(150deg,#b0562f,#7a2f1c); }
+  .g5 { background: linear-gradient(150deg,#d6b06a,#a5691a); }
+  .g6 { grid-column: span 1; background: linear-gradient(150deg,#6f7b52,#414c2c); }
+
+  /* ---------- ACCESS ---------- */
+  .access-grid { display:grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem,5vw,4rem); }
+  .info-list { border-top: 1px solid var(--line); }
+  .info-row { display:grid; grid-template-columns: 130px 1fr; gap: 1rem; padding: 1.15rem 0; border-bottom: 1px solid var(--line); }
+  .info-row dt { font-family: var(--mincho); font-size: 0.85rem; letter-spacing: 0.18em; color: var(--ochre-deep); }
+  .info-row dd { color: var(--espresso-soft); }
+  .info-row dd b { color: var(--espresso); font-weight: 500; }
+  .map {
+    position: relative; border-radius: 6px; overflow: hidden; min-height: 340px;
+    background:
+      linear-gradient(0deg, rgba(42,28,20,.06) 1px, transparent 1px) 0 0/100% 34px,
+      linear-gradient(90deg, rgba(42,28,20,.06) 1px, transparent 1px) 0 0/34px 100%,
+      var(--cream-deep);
+    border: 1px solid var(--line);
+    display:grid; place-items:center;
+  }
+  .map .road { position:absolute; background: var(--paper); }
+  .map .r1 { top:44%; left:0; right:0; height:26px; box-shadow: 0 0 0 1px var(--line); }
+  .map .r2 { left:38%; top:0; bottom:0; width:20px; box-shadow: 0 0 0 1px var(--line); }
+  .map .pin { position: relative; z-index:2; text-align:center; }
+  .map .pin svg { width: 42px; height:42px; margin-inline:auto; color: var(--terra); animation: drop 2s ease-in-out infinite; }
+  @keyframes drop { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-8px);} }
+  .map .pin b { font-family: var(--mincho); font-size: 0.85rem; letter-spacing: 0.12em; }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--espresso); color: var(--cream); padding: 4.5rem 0 2rem;
+  }
+  .foot-grid { display:grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2.5rem; align-items:start; }
+  .foot-brand { display:flex; align-items:center; gap:0.7rem; font-family: var(--serif); font-size: 1.6rem; }
+  .foot-brand svg { width: 40px; height:40px; }
+  .foot p { color: rgba(243,233,217,.66); font-size: 0.92rem; margin-top: 1rem; max-width: 34ch; }
+  .foot h4 { font-family: var(--mincho); letter-spacing:0.2em; font-size:0.82rem; color:#e6b45f; margin-bottom: 1rem; }
+  .foot ul { list-style:none; display:flex; flex-direction:column; gap: 0.6rem; font-size: 0.9rem; }
+  .foot ul a { color: rgba(243,233,217,.8); transition: color .3s; }
+  .foot ul a:hover { color:#e6b45f; }
+  .foot-bottom { display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.6rem; margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid rgba(243,233,217,.14); font-size: 0.78rem; letter-spacing:0.08em; color: rgba(243,233,217,.5); }
+
+  /* ---------- REVEAL ---------- */
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal.d1 { transition-delay:.08s; } .reveal.d2 { transition-delay:.16s; }
+  .reveal.d3 { transition-delay:.24s; } .reveal.d4 { transition-delay:.32s; }
+
+  /* hero load stagger */
+  .hero .stg { opacity:0; transform: translateY(20px); animation: rise .9s cubic-bezier(.2,.7,.3,1) forwards; }
+  .hero .stg.s1 { animation-delay:.1s; } .hero .stg.s2 { animation-delay:.25s; }
+  .hero .stg.s3 { animation-delay:.4s; } .hero .stg.s4 { animation-delay:.55s; }
+  .hero-art.stg { animation-delay:.35s; }
+  @keyframes rise { to { opacity:1; transform:none; } }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px) {
+    .nav-links, .nav-cta { display:none; }
+    .burger { display:block; }
+    .nav-links.open { display:flex; position:absolute; top:100%; left:0; right:0; flex-direction:column; gap:1.2rem; background:var(--cream); padding:1.5rem 5vw; border-bottom:1px solid var(--line); }
+    .hero-grid, .concept-grid, .access-grid { grid-template-columns: 1fr; }
+    .hero-art { width: min(300px, 72vw); margin: 3rem auto 0; }
+    .hero-bird { width: 74px; }
+    .menu-grid { grid-template-columns: 1fr 1fr; }
+    .gal-grid { grid-template-columns: repeat(2,1fr); }
+    .foot-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 520px) {
+    .menu-grid { grid-template-columns: 1fr; }
+    .info-row { grid-template-columns: 100px 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity:1; transform:none; }
+    .hero .stg, .hero-art.stg { opacity:1; transform:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- reusable bird logo -->
+<svg width="0" height="0" style="position:absolute"><symbol id="bird" viewBox="0 0 64 64">
+  <path fill="currentColor" d="M50 20c-3 0-5 1.4-6.4 3.6C41 19 36.5 16 31 16c-8.3 0-15 6.7-15 15 0 1 .1 2 .3 3-3.6.6-6.3 3.8-6.3 7.5 0 4.2 3.4 7.5 7.6 7.5H46c6.6 0 12-5.4 12-12 0-4.7-2.7-8.7-6.6-10.7.4-.9.6-1.8.6-2.8 0-.9-.7-1.5-1.5-1.5z"/>
+  <circle cx="26" cy="28" r="2.4" fill="#2a1c14"/>
+  <path d="M16 31l-7-3 7-1z" fill="#c1811f"/>
+</symbol></svg>
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top"><svg><use href="#bird"/></svg>Kotori Coffee</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#concept">Concept</a>
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#access">Access</a>
+    </nav>
+    <a class="nav-cta" href="#access">席を予約</a>
+    <button class="burger" id="burger" aria-label="メニュー"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow stg s1">Est. 2019 · 自家焙煎</span>
+        <h1 class="stg s2">A quiet<br>morning,<br><em>one cup.</em></h1>
+        <p class="jp-title stg s3">小鳥のさえずる朝に</p>
+        <p class="lead stg s3">街角の小さな自家焙煎カフェ、コトリ珈琲。<br>ゆっくり流れる時間を、香り高い一杯とともに。</p>
+        <div class="hero-actions stg s4">
+          <a class="btn btn-primary" href="#access">席を予約する
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#menu">メニューを見る</a>
+        </div>
+      </div>
+
+      <div class="hero-art stg">
+        <svg class="hero-bird" viewBox="0 0 64 64"><use href="#bird" style="color:var(--espresso)"/></svg>
+        <div class="hero-disc"></div>
+        <svg class="steam" style="left:38%;top:8%" width="60" height="90" viewBox="0 0 60 90" fill="none" stroke="rgba(248,241,228,.7)" stroke-width="3" stroke-linecap="round">
+          <path d="M20 82c-8-14 8-18 0-32s6-20 0-32"><animate attributeName="opacity" values="0.2;0.7;0.2" dur="4s" repeatCount="indefinite"/></path>
+          <path d="M40 82c8-14-8-18 0-32s-6-20 0-32"><animate attributeName="opacity" values="0.6;0.2;0.6" dur="4s" repeatCount="indefinite"/></path>
+        </svg>
+        <div class="hero-badge"><span>SINCE<br><b>2019</b><br>KOTORI</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>自家焙煎</span><span>Single Origin</span><span>手仕込みのスイーツ</span><span>Slow Morning</span><span>季節のブレンド</span>
+      <span>自家焙煎</span><span>Single Origin</span><span>手仕込みのスイーツ</span><span>Slow Morning</span><span>季節のブレンド</span>
+    </div>
+  </div>
+
+  <!-- CONCEPT -->
+  <section id="concept">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num">01</span>
+        <h2 class="sec-title">Our Concept<small>コンセプト</small></h2>
+      </div>
+      <div class="concept-grid">
+        <div class="concept-visual reveal"><div class="frame"></div></div>
+        <div class="concept-copy">
+          <h3 class="reveal d1">小さな一杯に、<em>朝のしずけさ</em>を。</h3>
+          <p class="reveal d2">コトリ珈琲は、通りの角にある十席ほどの小さなお店。豆はすべて店内で焙煎し、その日いちばんおいしい状態でお出しします。</p>
+          <p class="reveal d2">窓辺に射す朝の光、ページをめくる音、遠くで鳴く小鳥のさえずり。急がなくていい時間を、どうぞここで。</p>
+          <p class="sign reveal d3">— Kotori Coffee</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section id="menu">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num">02</span>
+        <h2 class="sec-title">Menu<small>お品書き</small></h2>
+      </div>
+      <p class="menu-lead reveal d1">季節ごとに変わるブレンドと、店主が毎朝手づくりする焼き菓子。どうぞごゆっくり。</p>
+      <div class="menu-grid">
+        <article class="m-card feature reveal d1">
+          <span class="m-tag">Signature</span>
+          <svg class="m-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 18h26v10a12 12 0 0 1-12 12H20A12 12 0 0 1 8 28zM34 20h4a5 5 0 0 1 0 10h-3M14 8v4M22 6v6M30 8v4"/></svg>
+          <h3 class="m-name">Kotori Blend<span class="jp">小鳥ブレンド</span></h3>
+          <p class="m-desc">ナッツと蜂蜜を思わせる看板の一杯。まろやかで毎日飲み飽きない味わい。</p>
+          <p class="m-price">¥<span>560</span> <small>／ hot・iced</small></p>
+        </article>
+
+        <article class="m-card reveal d2">
+          <span class="m-tag">Espresso</span>
+          <svg class="m-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h20v8a10 10 0 0 1-10 10 10 10 0 0 1-10-10zM32 22h4a4 4 0 0 1 0 8h-3M18 10c-1 2 1 3 0 5M26 10c-1 2 1 3 0 5"/></svg>
+          <h3 class="m-name">Cafe Latte<span class="jp">カフェラテ</span></h3>
+          <p class="m-desc">きめ細かなミルクと深煎りエスプレッソ。小鳥のラテアート付き。</p>
+          <p class="m-price">¥<span>580</span></p>
+        </article>
+
+        <article class="m-card reveal d3">
+          <span class="m-tag">Sweets</span>
+          <svg class="m-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 24c0-8 6-14 14-14s14 6 14 14M8 24h32v4a6 6 0 0 1-6 6H14a6 6 0 0 1-6-6zM24 34v6"/></svg>
+          <h3 class="m-name">Honey Scone<span class="jp">ハニースコーン</span></h3>
+          <p class="m-desc">外はさっくり中はしっとり。自家製はちみつバターを添えて。</p>
+          <p class="m-price">¥<span>420</span></p>
+        </article>
+
+        <article class="m-card reveal d1">
+          <span class="m-tag">Pour Over</span>
+          <svg class="m-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 10h20l-4 12H18zM20 22l-3 8h14l-3-8M24 30v8M18 40h12"/></svg>
+          <h3 class="m-name">Single Origin<span class="jp">本日の一杯</span></h3>
+          <p class="m-desc">日替わりのシングルオリジンをハンドドリップで。黒板をご覧ください。</p>
+          <p class="m-price">¥<span>620</span></p>
+        </article>
+
+        <article class="m-card reveal d2">
+          <span class="m-tag">Seasonal</span>
+          <svg class="m-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><path d="M24 8c6 4 8 10 8 16a8 8 0 0 1-16 0c0-6 2-12 8-16zM24 40v-8M24 24l-4-3M24 28l4-3"/></svg>
+          <h3 class="m-name">Seasonal Tea<span class="jp">季節のお茶</span></h3>
+          <p class="m-desc">摘みたてハーブと果実の香り。その時季いちばんの一杯を。</p>
+          <p class="m-price">¥<span>540</span></p>
+        </article>
+
+        <article class="m-card reveal d3">
+          <span class="m-tag">Plate</span>
+          <svg class="m-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><circle cx="24" cy="24" r="14"/><circle cx="24" cy="24" r="7"/><path d="M24 6v4M24 38v4M6 24h4M38 24h4"/></svg>
+          <h3 class="m-name">Morning Plate<span class="jp">朝のプレート</span></h3>
+          <p class="m-desc">トースト・卵・サラダに小鳥ブレンドを添えた朝限定セット。</p>
+          <p class="m-price">¥<span>980</span></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num">03</span>
+        <h2 class="sec-title">Gallery<small>店内の風景</small></h2>
+      </div>
+      <div class="gal-grid">
+        <div class="gal g1 reveal"><span>窓辺のカウンター</span></div>
+        <div class="gal g2 reveal d1"><span>焙煎機</span></div>
+        <div class="gal g3 reveal d2"><span>焼きたてのスコーン</span></div>
+        <div class="gal g4 reveal d1"><span>店内の様子</span></div>
+        <div class="gal g5 reveal d3"><span>ラテアート</span></div>
+        <div class="gal g6 reveal d2"><span>季節の花</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCESS -->
+  <section id="access">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num">04</span>
+        <h2 class="sec-title">Access &amp; Info<small>アクセス・営業案内</small></h2>
+      </div>
+      <div class="access-grid">
+        <dl class="info-list reveal d1">
+          <div class="info-row"><dt>住所</dt><dd><b>〒150-0001</b><br>東京都渋谷区神南1-2-3 小鳥ビル 1F<br>（架空の住所です）</dd></div>
+          <div class="info-row"><dt>営業時間</dt><dd><b>8:00 – 18:00</b>（L.O. 17:30）<br>朝プレートは 8:00–11:00</dd></div>
+          <div class="info-row"><dt>定休日</dt><dd>火曜日・第3水曜日</dd></div>
+          <div class="info-row"><dt>アクセス</dt><dd>各線 渋谷駅 徒歩7分<br>ビル1階・テラス席あり</dd></div>
+          <div class="info-row"><dt>電話</dt><dd><b>03-1234-5678</b>（架空）</dd></div>
+        </dl>
+        <div class="map reveal d2" aria-label="地図（イメージ）">
+          <div class="road r1"></div>
+          <div class="road r2"></div>
+          <div class="pin">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+            <b>Kotori Coffee</b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot">
+        <div class="foot-brand"><svg><use href="#bird" style="color:#e6b45f"/></svg>Kotori Coffee</div>
+        <p>小鳥のさえずる朝に。街の小さな自家焙煎カフェから、ゆっくり流れる時間をお届けします。</p>
+      </div>
+      <div>
+        <h4>MENU</h4>
+        <ul>
+          <li><a href="#concept">コンセプト</a></li>
+          <li><a href="#menu">お品書き</a></li>
+          <li><a href="#gallery">ギャラリー</a></li>
+          <li><a href="#access">アクセス</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>FOLLOW</h4>
+        <ul>
+          <li><a href="#" onclick="return false">Instagram</a></li>
+          <li><a href="#" onclick="return false">X / Twitter</a></li>
+          <li><a href="#" onclick="return false">Newsletter</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Kotori Coffee — 架空のカフェ LP（デモ）</span>
+      <span>Roasted with care in Tokyo</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // mobile nav
+  const burger = document.getElementById('burger');
+  const links = document.getElementById('navLinks');
+  burger.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.14 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
